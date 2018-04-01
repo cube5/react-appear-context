@@ -1,7 +1,7 @@
 {
-  "name": "new",
+  "name": "react-modal-context",
   "version": "1.0.0",
-  "description": "",
+  "description": "Modal component using React's context api.",
   "keywords": [],
   "homepage": "https://codesandbox.io/s/new",
   "main": "src/index.js",
