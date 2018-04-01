@@ -7,12 +7,23 @@ import "./modal.css";
 export default class Modal extends Component {
   static propTypes = {
     show: PropTypes.func,
-    hide: PropTypes.func
+    hide: PropTypes.func,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    buttons: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        onClick: PropTypes.func
+      })
+    )
   };
 
   static defaultProps = {
     show: () => null,
-    hide: () => null
+    hide: () => null,
+    title: null,
+    content: null,
+    buttons: []
   };
 
   container = document.getElementById("modal") || this.createContanier();
@@ -29,12 +40,18 @@ export default class Modal extends Component {
   };
 
   render() {
+    const { title, content, buttons, show, hide } = this.props;
     return ReactDOM.createPortal(
       <div className="modal">
-        <div className="modal-title">Title</div>
-        <div className="modal-body">Body</div>
-        <div className="modal-footer">Footer</div>
-        <button onClick={this.props.hide}>hide</button>
+        <div className="modal-title">{title}</div>
+        <div className="modal-body">{content}</div>
+        <div className="modal-body">
+          {buttons.map(btn => (
+            <button onClick={() => btn.onClick({ show, hide })}>
+              {btn.label}
+            </button>
+          ))}
+        </div>
       </div>,
       this.container
     );
