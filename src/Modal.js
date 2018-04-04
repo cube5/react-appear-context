@@ -46,8 +46,8 @@ export default class Modal extends Component {
         <div className="modal-title">{title}</div>
         <div className="modal-body">{content}</div>
         <div className="modal-body">
-          {buttons.map(btn => (
-            <button onClick={() => btn.onClick({ show, hide })}>
+          {buttons.map((btn, index) => (
+            <button key={index} onClick={() => btn.onClick({ show, hide })}>
               {btn.label}
             </button>
           ))}

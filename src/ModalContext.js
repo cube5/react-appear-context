@@ -17,22 +17,32 @@ class ModalProvider extends Component {
   };
 
   state = {
-    visible: false
+    context: {
+      visible: false,
+      show: () => this.show(),
+      hide: () => this.hide()
+    }
   };
 
-  show = () => this.setState({ visible: true });
+  show = () =>
+    this.setState(state => ({
+      context: {
+        ...state.context,
+        visible: true
+      }
+    }));
 
-  hide = () => this.setState({ visible: false });
+  hide = () =>
+    this.setState(state => ({
+      context: {
+        ...state.context,
+        visible: false
+      }
+    }));
 
   render() {
     return (
-      <ModalContext.Provider
-        value={{
-          show: this.show,
-          hide: this.hide,
-          visible: this.state.visible
-        }}
-      >
+      <ModalContext.Provider value={this.state.context}>
         {this.props.children}
       </ModalContext.Provider>
     );
