@@ -1,12 +1,11 @@
 .modal {
-  top: 0;
-  left: 0;
   width: 100%;
   height: auto;
   color: white;
-  position: absolute;
   text-align: center;
   background-color: black;
+  padding: 20px;
+  font-family: sans-serif;
 }
 
 .modal-title {

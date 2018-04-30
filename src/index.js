@@ -12,22 +12,24 @@ const App = () => {
   return (
     <ModalProvider>
       <div style={styles}>
-        <Modal
-          title={"Modal Title"}
-          content={"Modal content"}
-          buttons={[
-            {
-              label: "Ok",
-              onClick: ({ hide }) => hide()
-            },
-            {
-              label: "Cancel",
-              onClick: ({ hide }) => hide()
-            }
-          ]}
-        />
+        <Modal>
+          {({ show, hide }) => (
+            <div className="modal">
+              <div className="modal-title">Title</div>
+              <div className="modal-body">Content</div>
+              <div className="modal-body">
+                <button onClick={hide}>Ok</button>
+                <button onClick={hide}>Cancel</button>
+              </div>
+            </div>
+          )}
+        </Modal>
         <ModalConsumer>
-          {({ show }) => <button onClick={show}>Show</button>}
+          {({ visible, toggle }) => (
+            <button onClick={toggle}>
+              {visible ? "Hide" : "Show"} {"visible: " + visible}
+            </button>
+          )}
         </ModalConsumer>
       </div>
     </ModalProvider>

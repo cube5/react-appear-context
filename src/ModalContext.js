@@ -20,7 +20,8 @@ class ModalProvider extends Component {
     context: {
       visible: false,
       show: () => this.show(),
-      hide: () => this.hide()
+      hide: () => this.hide(),
+      toggle: () => this.toggle()
     }
   };
 
@@ -37,6 +38,14 @@ class ModalProvider extends Component {
       context: {
         ...state.context,
         visible: false
+      }
+    }));
+
+  toggle = () =>
+    this.setState(state => ({
+      context: {
+        ...state.context,
+        visible: !state.context.visible
       }
     }));
 
